@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travaio - Because Peace of Mind Should Travel Too</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="icon" type="image/png" href="Travaio Travel Tech.png">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2A9D8F',
+secondary: '#264653'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+.hero-bg {
+background: linear-gradient(135deg, rgba(42, 157, 143, 0.9) 0%, rgba(38, 70, 83, 0.8) 100%),
+url('https://readdy.ai/api/search-image?query=peaceful%20mountain%20landscape%20with%20winding%20roads%20through%20scenic%20valleys%2C%20soft%20morning%20light%2C%20minimalist%20travel%20photography%2C%20serene%20atmosphere%2C%20natural%20beauty%2C%20clean%20composition%2C%20professional%20travel%20destination&width=1920&height=1080&seq=hero1&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+.feature-card {
+backdrop-filter: blur(10px);
+background: rgba(255, 255, 255, 0.95);
+}
+.gradient-text {
+background: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.floating-animation {
+animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+}
+.slide-in {
+animation: slideIn 0.8s ease-out;
+}
+@keyframes slideIn {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.logo-circle {
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+.logo-circle::before {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 30%;
+background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.3) 100%);
+border-radius: 0 0 50% 50%;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 34px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #2A9D8F;
+}
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center space-x-4">
+<div class="logo-circle">
+<img src="Travaio Travel Tech.png" alt="Travaio"></img>
+</div>
+<div>
+<h1 class="text-2xl font-semibold text-primary">Travaio</h1>
+<p class="text-xs text-gray-600">Because Peace of Mind Should Travel Too</p>
+</div>
+</div>
+<nav class="hidden md:flex space-x-8">
+<a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+<a href="#safety" class="text-gray-700 hover:text-primary transition-colors">Safety Features</a>
+<a href="about_us.html" class="text-gray-700 hover:text-primary transition-colors">About Us</a>
+<a href="contact_us.html" class="text-gray-700 hover:text-primary transition-colors">Contact Us</a>
+</nav>
+<div class="flex items-center space-x-4">
+  <a href="login.html" class="text-gray-700 hover:text-teal-500 transition-colors whitespace-nowrap rounded-lg px-6 py-2">
+    Login
+  </a>
+  <a href="signup.html" class="bg-teal-500 text-white px-6 py-2 rounded-lg hover:bg-teal-600 transition-colors whitespace-nowrap">
+    Sign Up
+  </a>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section id="home" class="hero-bg min-h-screen flex items-center">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="text-white slide-in">
+<h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+Travel Safe,<br>
+<span class="text-yellow-300">Sleep Sound</span>
+</h1>
+<p class="text-xl mb-8 text-gray-100 leading-relaxed">
+Advanced route monitoring and smart location-based alarms ensure your solo journeys are secure and stress-free. Never miss your destination or worry about unexpected route changes again.
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="signup.html" class="bg-yellow-400 text-gray-900 px-8 py-4 text-lg font-semibold hover:bg-yellow-300 transition-colors whitespace-nowrap !rounded-button">
+Get Started Free
+</a>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 floating-animation">
+<div class="feature-card p-6 rounded-2xl shadow-xl">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+<i class="ri-route-line text-white text-xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900">Real-time Route Monitoring</h3>
+</div>
+<p class="text-gray-600">Get instant alerts when your vehicle deviates from the expected route. Emergency contacts are automatically notified if you don't respond.</p>
+</div>
+<div class="feature-card p-6 rounded-2xl shadow-xl">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
+<i class="ri-alarm-line text-white text-xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900">Smart Location-based Alarm</h3>
+</div>
+<p class="text-gray-600">Never oversleep your destination again. Set location-based reminders that adapt to your actual travel speed and route progress.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="services" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">How Travaio Works</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Three simple steps to ensure your safety and peace of mind during solo travel</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+<div>
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-6">
+<i class="ri-shield-check-line text-white text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-gray-900">Route Safety Monitor</h3>
+</div>
+<p class="text-lg text-gray-600 mb-6 leading-relaxed">
+Our advanced GPS tracking system continuously monitors your route and compares it with your planned journey. The moment your vehicle takes an unexpected turn, you'll receive an instant notification.
+</p>
+<div class="space-y-4">
+<div class="flex items-center">
+<i class="ri-check-line text-primary text-xl mr-3"></i>
+<span class="text-gray-700">Real-time route deviation alerts</span>
+</div>
+<div class="flex items-center">
+<i class="ri-check-line text-primary text-xl mr-3"></i>
+<span class="text-gray-700">Automatic emergency contact notification</span>
+</div>
+<div class="flex items-center">
+<i class="ri-check-line text-primary text-xl mr-3"></i>
+<span class="text-gray-700">Customizable response time settings</span>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 p-8 rounded-2xl">
+<img src="https://readdy.ai/api/search-image?query=modern%20smartphone%20displaying%20GPS%20navigation%20app%20with%20route%20tracking%2C%20clean%20interface%20design%2C%20travel%20safety%20technology%2C%20mobile%20application%20mockup%2C%20professional%20product%20photography%2C%20minimalist%20background&width=600&height=400&seq=route1&orientation=landscape"
+alt="Route monitoring interface" class="w-full h-80 object-cover rounded-lg shadow-lg">
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="bg-gray-50 p-8 rounded-2xl order-2 lg:order-1">
+<img src="https://readdy.ai/api/search-image?query=smart%20alarm%20clock%20interface%20on%20mobile%20device%2C%20location-based%20notification%20system%2C%20travel%20app%20design%2C%20modern%20UI%20elements%2C%20wake-up%20reminder%20technology%2C%20clean%20digital%20interface&width=600&height=400&seq=alarm1&orientation=landscape"
+alt="Smart alarm interface" class="w-full h-80 object-cover rounded-lg shadow-lg">
+</div>
+<div class="order-1 lg:order-2">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mr-6">
+<i class="ri-time-line text-white text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-gray-900">Smart Travel Alarm</h3>
+</div>
+<p class="text-lg text-gray-600 mb-6 leading-relaxed">
+Set location-based alarms that adapt to your actual travel progress. No more guessing arrival times or missing your stop because you fell asleep during long journeys.
+</p>
+<div class="space-y-4">
+<div class="flex items-center">
+<i class="ri-check-line text-primary text-xl mr-3"></i>
+<span class="text-gray-700">GPS-based proximity alerts</span>
+</div>
+<div class="flex items-center">
+<i class="ri-check-line text-primary text-xl mr-3"></i>
+<span class="text-gray-700">Speed-adaptive time calculations</span>
+</div>
+<div class="flex items-center">
+<i class="ri-check-line text-primary text-xl mr-3"></i>
+<span class="text-gray-700">Backup alarm system for signal loss</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="safety" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Complete Safety Features</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive protection for every aspect of your solo travel experience</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-map-pin-line text-white text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Real-time Tracking</h3>
+<p class="text-gray-600">Continuous GPS monitoring with live location sharing to your trusted contacts</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-notification-3-line text-white text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Emergency Alerts</h3>
+<p class="text-gray-600">Instant notifications to emergency contacts when unusual activity is detected</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-road-map-line text-white text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Route Deviation</h3>
+<p class="text-gray-600">Smart detection of unexpected route changes with immediate alert system</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+<div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-contacts-line text-white text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-4">Contact Management</h3>
+<p class="text-gray-600">Easy setup and management of emergency contacts with priority levels</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">User Dashboard Preview</h2>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience the intuitive interface designed for effortless travel safety management</p>
+</div>
+<div class="bg-gray-50 rounded-3xl p-8 lg:p-12">
+<div class="grid lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2">
+<div class="bg-white rounded-2xl p-6 shadow-lg">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold text-gray-900">Current Journey</h3>
+<div class="flex items-center space-x-2">
+<div class="w-3 h-3 bg-green-500 rounded-full"></div>
+<span class="text-green-600 font-semibold">Active</span>
+</div>
+</div>
+<div class="bg-gray-100 rounded-lg h-64 mb-6 flex items-center justify-center">
+<img src="https://images.shiksha.com/mediadata/images/listingGoogle/listingLocationlive119433.jpg"
+alt="Interactive map" class="w-full h-full object-cover rounded-lg">
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-blue-50 p-4 rounded-lg">
+<p class="text-sm text-blue-600 font-semibold">Current Location</p>
+<p class="text-gray-900 font-bold">GLA University, Chaumuhan</p>
+</div>
+<div class="bg-green-50 p-4 rounded-lg">
+<p class="text-sm text-green-600 font-semibold">ETA to Destination</p>
+<p class="text-gray-900 font-bold">1h 15m</p>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-white rounded-2xl p-6 shadow-lg">
+<h4 class="text-lg font-bold text-gray-900 mb-4">Safety Settings</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Route Monitoring</span>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Emergency Alerts</span>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Location Sharing</span>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 shadow-lg">
+<h4 class="text-lg font-bold text-gray-900 mb-4">Emergency Contacts</h4>
+<div class="space-y-3">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-user-line text-white"></i>
+</div>
+<div>
+<p class="font-semibold text-gray-900">Ananya Jaiswal</p>
+<p class="text-sm text-gray-600">Primary Contact</p>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
+<i class="ri-user-line text-white"></i>
+</div>
+<div>
+<p class="font-semibold text-gray-900">Khushi Thakur</p>
+<p class="text-sm text-gray-600">Secondary Contact</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-primary text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="text-4xl font-bold mb-6">Ready to Travel with Confidence?</h2>
+<p class="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
+Join thousands of solo travelers who trust Travaio for their safety and peace of mind. Start your journey today!
+</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+<a href="signup.html">
+<button class="bg-white text-primary px-8 py-4 text-lg font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap !rounded-button">
+Start Free Trial
+</button>
+</a>
+</div>
+<div class="grid md:grid-cols-3 gap-8 text-center">
+<div>
+<div class="text-3xl font-bold mb-2">1,000+</div>
+<div class="text-blue-100">Safe Journeys Completed</div>
+</div>
+<div>
+<div class="text-3xl font-bold mb-2">99.9%</div>
+<div class="text-blue-100">Alert Accuracy Rate</div>
+</div>
+<div>
+<div class="text-3xl font-bold mb-2">24/7</div>
+<div class="text-blue-100">Monitoring & Support</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-900 text-white py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-4 gap-8">
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-4 mb-6">
+<div class="logo-circle">
+  <img src="Travaio Travel Tech.png" alt="Travaio"></img>
+</div>
+<div>
+<h3 class="font-['Pacifico'] text-2xl text-white">Travaio</h3>
+<p class="text-gray-400 text-sm">Because Peace of Mind Should Travel Too</p>
+</div>
+</div>
+<p class="text-gray-400 mb-6 max-w-md">
+Empowering solo travelers with advanced safety technology and intelligent monitoring systems for worry-free journeys around the world.
+</p>
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-facebook-line"></i>
+</div>
+<div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-twitter-line"></i>
+</div>
+<div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-instagram-line"></i>
+</div>
+<div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-linkedin-line"></i>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Quick Links</h4>
+<ul class="space-y-3">
+<li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+<li><a href="#safety" class="text-gray-400 hover:text-white transition-colors">Safety Features</a></li>
+<li><a href="about_us.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="contact_us.html" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+<div>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm">© 2024 Travaio. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const links = document.querySelectorAll('a[href^="#"]');
+links.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetSection = document.querySelector(targetId);
+if (targetSection) {
+targetSection.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+});
+</script>
+<script id="scroll-animations">
+document.addEventListener('DOMContentLoaded', function() {
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver(function(entries) {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('slide-in');
+}
+});
+}, observerOptions);
+const animatedElements = document.querySelectorAll('.feature-card, .bg-white.p-8, .bg-gray-50.p-8');
+animatedElements.forEach(el => observer.observe(el));
+});
+</script>
+<script id="mobile-menu">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.createElement('button');
+mobileMenuButton.className = 'md:hidden w-8 h-8 flex items-center justify-center';
+mobileMenuButton.innerHTML = '<i class="ri-menu-line text-xl"></i>';
+const headerButtons = document.querySelector('header .flex.items-center.space-x-4:last-child');
+if (headerButtons) {
+headerButtons.appendChild(mobileMenuButton);
+}
+});
+</script>
+</body>
+</html>

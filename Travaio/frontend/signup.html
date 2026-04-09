@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - Travaio</title>
+
+  <!-- Tailwind CDN build -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2A9D8F',
+            secondary: '#264653'
+          },
+          borderRadius: {
+            'button': '8px'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts / Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet" />
+
+  <style>
+    /* Icon reset workaround (optional; you had this previously) */
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    .logo-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-circle::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.3) 100%);
+      border-radius: 0 0 50% 50%;
+    }
+
+    /* Gradient text fix (cross-browser) */
+    .gradient-text {
+      background: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6b7280;
+      transition: color 0.3s;
+    }
+    .password-toggle:hover {
+      color: #2A9D8F;
+    }
+
+    .floating-card {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .login-container { /* used for both login & signup layout shells */
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- HEADER -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-4">
+          <div class="logo-circle">
+            <img src="Travaio Travel Tech.png" alt="Travaio" />
+          </div>
+          <div>
+            <h1 class="text-2xl font-semibold text-primary">Travaio</h1>
+            <p class="text-xs text-gray-600">Because Peace of Mind Should Travel Too</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="login.html" class="text-gray-700 hover:text-primary transition-colors whitespace-nowrap flex items-center space-x-2">
+            <i class="ri-arrow-left-line w-4 h-4 flex items-center justify-center"></i>
+            <span>Go to Sign In</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="login-container py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- SIGNUP CARD -->
+        <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12 max-w-md mx-auto w-full">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Welcome To Travaio</h2>
+            <p class="text-gray-600">Create your Travaio account</p>
+          </div>
+          <form id="signup-form" class="space-y-6" autocomplete="off">
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="ri-id-card-line w-5 h-5 flex items-center justify-center text-gray-400"></i>
+                </div>
+                <input type="text" id="name" name="name" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Aditya Sharma" />
+              </div>
+            </div>
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="ri-mail-line w-5 h-5 flex items-center justify-center text-gray-400"></i>
+                </div>
+                <input type="email" id="email" name="email" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="aditya@example.com" />
+              </div>
+            </div>
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="ri-phone-line w-5 h-5 flex items-center justify-center text-gray-400"></i>
+                </div>
+                <input type="tel" id="phone" name="phone" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="+91 9876543210" />
+              </div>
+            </div>
+            <!-- Password -->
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Set Your Password</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="ri-lock-line w-5 h-5 flex items-center justify-center text-gray-400"></i>
+                </div>
+                <input type="password" id="password-input" name="password" required class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Set your password" />
+                <button type="button" aria-label="Toggle password visibility" class="password-toggle" id="password-toggle">
+                  <i class="ri-eye-off-line w-5 h-5 flex items-center justify-center"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Message / Errors -->
+            <p id="signup-msg" class="text-sm text-center h-5"></p>
+
+            <!-- Submit -->
+            <button type="submit" id="signup-submit" class="w-full bg-primary text-white py-3 px-6 text-lg font-semibold hover:bg-secondary transition-colors whitespace-nowrap rounded-lg">
+              Sign Up
+            </button>
+
+            <!-- Divider + Link -->
+            <div class="text-center mt-4">
+              <p class="text-sm text-gray-600">
+                Already a Member?
+                <a href="login.html" class="text-primary hover:text-secondary font-semibold transition-colors">Sign In</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- FEATURES CARD -->
+        <div class="space-y-8">
+          <div class="bg-white rounded-3xl shadow-xl p-8 floating-card">
+            <div class="text-center mb-8">
+              <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="ri-shield-check-line text-white text-3xl"></i>
+              </div>
+              <div class="bg-gradient-to-br from-primary to-secondary rounded-3xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6">Quick Access Features</h3>
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3"><i class="ri-dashboard-line w-6 h-6 flex items-center justify-center"></i><span>Personal travel dashboard</span></div>
+                  <div class="flex items-center space-x-3"><i class="ri-notification-3-line w-6 h-6 flex items-center justify-center"></i><span>Real-time safety alerts</span></div>
+                  <div class="flex items-center space-x-3"><i class="ri-contacts-line w-6 h-6 flex items-center justify-center"></i><span>Emergency contact management</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+          <div class="logo-circle">
+            <img src="Travaio Travel Tech.png" alt="Travaio" />
+          </div>
+          <div>
+            <h3 class="font-['Pacifico'] text-xl text-white">Travaio</h3>
+          </div>
+        </div>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Support</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-400 text-sm">© 2024 Travaio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================== SCRIPTS ====================== -->
+  <script>
+    /* Password visibility toggle */
+    document.addEventListener('DOMContentLoaded', () => {
+      const passwordInput = document.getElementById('password-input');
+      const passwordToggle = document.getElementById('password-toggle');
+      const toggleIcon = passwordToggle.querySelector('i');
+      passwordToggle.addEventListener('click', () => {
+        const showing = passwordInput.type === 'text';
+        passwordInput.type = showing ? 'password' : 'text';
+        toggleIcon.className = showing
+          ? 'ri-eye-off-line w-5 h-5 flex items-center justify-center'
+          : 'ri-eye-line w-5 h-5 flex items-center justify-center';
+      });
+    });
+  </script>
+
+  <script>
+    /* Signup submission */
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE_URL = window.API_BASE_URL || 'http://localhost:5000';
+      const form = document.getElementById('signup-form');
+      const msgEl = document.getElementById('signup-msg');
+      const submitBtn = document.getElementById('signup-submit');
+
+      function setMsg(text, isError = true) {
+        msgEl.textContent = text;
+        msgEl.classList.toggle('text-red-600', isError);
+        msgEl.classList.toggle('text-green-600', !isError);
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        setMsg('Signing up...', false);
+
+        const data = Object.fromEntries(new FormData(form));
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Signing Up...';
+
+        try {
+          const res = await fetch(`${API_BASE_URL}/auth/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            throw new Error(json.msg || json.error || 'Signup failed');
+          }
+
+          // If your backend returns token+user right away, you can auto-login:
+          if (json.token && json.user) {
+            localStorage.setItem('travaio_token', json.token);
+            localStorage.setItem('travaio_user', JSON.stringify(json.user));
+          }
+
+          submitBtn.innerHTML = '<i class="ri-check-line mr-2"></i>Signed Up!';
+          setMsg('Signup successful! Redirecting...', false);
+          setTimeout(() => {
+            // Go to login or dashboard — choose one:
+            window.location.href = 'login.html';
+          }, 800);
+        } catch (err) {
+          console.error('[Signup] error:', err);
+          setMsg(err.message || 'Signup failed.');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Sign Up';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

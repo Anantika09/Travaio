@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Monitor Trip | TRAVAIO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #map { height: calc(100vh - 116px); width: 100%; }
+    #status { font-size: 14px; margin-top: 5px; }
+    .alert { color: red; font-weight: bold; }
+    
+    /* Header styles */
+    #button {
+    --tw-bg-opacity: 1;
+    --tw-space-x-reverse: 0;
+    background-color: rgb(20 184 166 / var(--tw-bg-opacity, 1));
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    border-radius: 75px;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+    text-decoration: inherit;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+}
+    header.bg-white { background-color: white; }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .sticky { position: sticky; }
+    .top-0 { top: 0; }
+    .z-50 { z-index: 50; }
+    .max-w-7xl { max-width: 80rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .flex { display: flex; }
+    .justify-between { justify-content: space-between; }
+    .items-center { align-items: center; }
+    .h-16 { height: 4rem; }
+    .space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 1rem; }
+    .logo-circle { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; }
+    .logo-circle img { width: 100%; height: 100%; object-fit: contain; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-gray-600 { color: #4b5563; }
+    .text-gray-700 { color: #374151; }
+    .hover\:text-primary:hover { color: #3b82f6; }
+    .transition-colors { transition-property: color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .whitespace-nowrap { white-space: nowrap; }
+    .w-4 { width: 1rem; }
+    .h-4 { height: 1rem; }
+    .font-\[\'Pacifico\'\] { font-family: 'Pacifico', cursive; }
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    /* Loading spinner */
+    .loading-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1000;
+    }
+    .loading-spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #3b82f6;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Popup modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .modal-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #dc2626;
+    }
+    .modal-close {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    /* Trip info bar */
+    #trip-info {
+      padding: 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+    #distance-info {
+      font-weight: bold;
+      color: #3b82f6;
+    }
+    #header1{
+      margin-bottom: 0;
+      --tw-text-opacity: 1;
+    color: rgb(42 157 143 / var(--tw-text-opacity, 1));
+    }
+    #para1{
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Your exact original header (not changed at all) -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-4">
+          <div class="logo-circle">
+            <img src="Travaio Travel Tech.png" alt="Travaio">
+          </div>
+          <div>
+            <h1 id="header1" class="text-2xl text-teal-500">Travaio</h1>
+            <p id="para1" class="text-xs text-gray-600">Because Peace of Mind Should Travel Too</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="dashboard.html" id="button" class="bg-teal-500 text-white px-6 py-2 rounded-lg hover:bg-teal-600 transition-colors">
+    Back to Dashboard
+  </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="trip-info">
+    <strong>Trip Monitor</strong> |
+    <span id="trip-label">Loading...</span>
+    <div id="distance-info">Distance: -- km | Time: --</div>
+  </div>
+  <div id="map"></div>
+  <div id="status"></div>
+
+  <!-- Loading spinner -->
+  <div class="loading-container" id="loading-spinner">
+    <div class="loading-spinner"></div>
+    <div>Loading trip data...</div>
+  </div>
+
+  <!-- Off route popup -->
+  <div class="modal" id="offRouteModal">
+    <div class="modal-content">
+      <div class="modal-title">Route Deviation Alert</div>
+      <p>You are off your planned route!</p>
+      <button class="modal-close" id="closeModal">OK</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+  <script>
+    const API_BASE_URL = window.API_BASE_URL || 'http://localhost:5000';
+    const token = localStorage.getItem('travaio_token');
+
+    if (!token) {
+      alert('Not logged in');
+      window.location.href = 'login.html';
+    }
+
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function setStatus(msg, isAlert = false) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = isAlert ? 'alert' : '';
+      if (isAlert) showOffRoutePopup(msg);
+    }
+
+    function showOffRoutePopup(msg) {
+      const modal = document.getElementById('offRouteModal');
+      const closeBtn = document.getElementById('closeModal');
+      
+      modal.style.display = 'flex';
+      
+      closeBtn.onclick = function() {
+        modal.style.display = 'none';
+      }
+      
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
+    }
+
+    function notifyUser(msg) {
+      if (!('Notification' in window)) return;
+      if (Notification.permission === 'granted') {
+        new Notification('TRAVAIO Alert', { body: msg });
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(p => {
+          if (p === 'granted') new Notification('TRAVAIO Alert', { body: msg });
+        });
+      }
+    }
+
+    function updateDistanceInfo(distanceMeters) {
+      const distanceKm = (distanceMeters / 1000).toFixed(2);
+      document.getElementById('distance-info').textContent = `Distance: ${distanceKm} km | Time: --`;
+    }
+
+    const tripId = getQueryParam('tripId');
+    if (!tripId) {
+      alert('No tripId provided.');
+    } else {
+      let tripData = null;
+      let routeControl = null;
+      let userMarker = null;
+      let routeLineLatLngs = [];
+
+      async function fetchTrip() {
+        try {
+          const res = await fetch(`${API_BASE_URL}/trip/${tripId}`, {
+            headers: { 'Authorization': 'Bearer ' + token }
+          });
+
+          if (!res.ok) {
+            alert('Failed to load trip.');
+            return;
+          }
+
+          tripData = await res.json();
+          document.getElementById('trip-label').textContent = `${tripData.origin} → ${tripData.destination}`;
+          await ensureTripCoords();
+          initMapAndRoute();
+          document.getElementById('loading-spinner').style.display = 'none';
+        } catch (error) {
+          console.error('Error loading trip:', error);
+          setStatus('Error loading trip data', true);
+        }
+      }
+
+      async function geocode(place) {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`;
+        const res = await fetch(url);
+        const arr = await res.json();
+        if (arr && arr.length > 0) {
+          return { lat: Number(arr[0].lat), lng: Number(arr[0].lon) };
+        }
+        return null;
+      }
+
+      async function ensureTripCoords() {
+        if (!tripData.originCoords) {
+          const c = await geocode(tripData.origin);
+          if (c) tripData.originCoords = c;
+        }
+        if (!tripData.destinationCoords) {
+          const c = await geocode(tripData.destination);
+          if (c) tripData.destinationCoords = c;
+        }
+        if (!tripData.originCoords || !tripData.destinationCoords) {
+          alert('Could not geocode origin or destination.');
+        }
+      }
+
+      let map;
+      function initMapAndRoute() {
+        const start = tripData.originCoords || { lat: 28.6139, lng: 77.2090 };
+        map = L.map('map').setView([start.lat, start.lng], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        if (tripData.originCoords && tripData.destinationCoords) {
+          routeControl = L.Routing.control({
+            waypoints: [
+              L.latLng(tripData.originCoords.lat, tripData.originCoords.lng),
+              L.latLng(tripData.destinationCoords.lat, tripData.destinationCoords.lng)
+            ],
+            routeWhileDragging: false,
+            addWaypoints: false,
+            draggableWaypoints: false,
+            show: false
+          })
+          .on('routesfound', function(e) {
+            const coords = e.routes[0].coordinates;
+            routeLineLatLngs = coords.map(c => L.latLng(c.lat, c.lng));
+            setStatus('Route loaded.');
+            
+            // Calculate total distance in meters
+            let totalDistance = 0;
+            for (let i = 1; i < coords.length; i++) {
+              totalDistance += L.latLng(coords[i-1].lat, coords[i-1].lng).distanceTo(
+                L.latLng(coords[i].lat, coords[i].lng)
+              );
+            }
+            const totalDistanceKm = (totalDistance / 1000).toFixed(2);
+            
+            // Calculate travel time (50 km/h average speed)
+            const avgSpeedKph = 50;
+            const timeHours = totalDistanceKm / avgSpeedKph;
+            const hours = Math.floor(timeHours);
+            const minutes = Math.round((timeHours - hours) * 60);
+            let timeStr = '';
+            if (hours > 0) timeStr += `${hours} hr${hours !== 1 ? 's' : ''} `;
+            timeStr += `${minutes} min${minutes !== 1 ? 's' : ''}`;
+            
+            // Update display with distance AND time
+            document.getElementById('distance-info').textContent = 
+              `Distance: ${totalDistanceKm} km | Time: ${timeStr}`;
+          })
+          .addTo(map);
+        } else {
+          setStatus('Missing coords, showing start only.', true);
+        }
+
+        startWatchingPosition();
+      }
+
+      const DEVIATION_THRESHOLD_METERS = 300;
+
+      function calcMinDistanceToRoute(lat, lng) {
+        if (!routeLineLatLngs.length) return Infinity;
+        const current = L.latLng(lat, lng);
+        let min = Infinity;
+        for (let i = 0; i < routeLineLatLngs.length; i++) {
+          const d = current.distanceTo(routeLineLatLngs[i]);
+          if (d < min) min = d;
+        }
+        return min;
+      }
+
+      function startWatchingPosition() {
+        if (!('geolocation' in navigator)) {
+          alert('Geolocation not supported.');
+          return;
+        }
+
+        navigator.geolocation.watchPosition(pos => {
+          const { latitude, longitude } = pos.coords;
+          if (!userMarker) {
+            userMarker = L.marker([latitude, longitude], { title: 'You' }).addTo(map);
+          } else {
+            userMarker.setLatLng([latitude, longitude]);
+          }
+
+          const distance = calcMinDistanceToRoute(latitude, longitude);
+          updateDistanceInfo(distance);
+
+          if (distance === Infinity) {
+            setStatus('No route loaded yet…');
+            return;
+          }
+
+          if (distance > DEVIATION_THRESHOLD_METERS) {
+            setStatus('You are off your planned route!', true);
+          } else {
+            setStatus('On route.');
+          }
+        }, err => {
+          console.error('geolocation error', err);
+          setStatus('Location unavailable.', true);
+        }, {
+          enableHighAccuracy: true,
+          maximumAge: 5000,
+          timeout: 20000
+        });
+      }
+
+      fetchTrip();
+    }
+  </script>
+</body>
+</html>

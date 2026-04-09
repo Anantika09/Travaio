@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Travaio | AI-Powered Travel Safety Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Modern Teal Theme ===== */
+        :root {
+            --teal-primary: #008080;
+            --teal-dark: #006666;
+            --teal-light: #E6F2F2;
+            --white: #FFFFFF;
+            --black: #222222;
+            --gray: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero-about {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero-about h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero-about p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== Content Sections ===== */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--teal-primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--black);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== Mission Section ===== */
+        .mission {
+            background-color: var(--teal-light);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .mission-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mission-card h3 {
+            color: var(--teal-primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* ===== Features Section ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            border-left: 4px solid var(--teal-primary);
+            padding-left: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: var(--teal-dark);
+            margin-bottom: 10px;
+        }
+
+        /* ===== CTA Section ===== */
+        .cta {
+            background-color: var(--teal-primary);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--teal-primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--teal-dark);
+            color: var(--white);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .hero-about h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== Hero Section ===== -->
+    <section class="hero-about">
+        <div class="container">
+            <h1>Redefining Solo Travel Safety</h1>
+            <p>Travaio leverages AI-powered route intelligence to protect travelers in real-time</p>
+        </div>
+    </section>
+
+    <!-- ===== Mission Section ===== -->
+    <section class="section mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission</h2>
+                <p>We're building the future of intelligent travel safety - where technology acts as your guardian angel on every journey</p>
+            </div>
+            
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <h3>Safety First</h3>
+                    <p>Eliminate the anxiety of solo travel with our real-time deviation alerts and emergency response system</p>
+                </div>
+                
+                <div class="mission-card">
+                    <h3>Smart Technology</h3>
+                    <p>Patented route prediction algorithms that learn from millions of travel patterns</p>
+                </div>
+                
+                <div class="mission-card">
+                    <h3>Universal Access</h3>
+                    <p>Web-based platform means no downloads - protection for everyone, everywhere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Problem/Solution Section ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Travaio Exists</h2>
+                <p>Traditional travel safety solutions fail modern travelers</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>The Problem</h3>
+                    <p>82% of solo travelers report safety concerns, yet existing solutions require constant manual monitoring</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Our Innovation</h3>
+                    <p>Automatic anomaly detection that works while you sleep, with multi-layer emergency protocols</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Proven Impact</h3>
+                    <p>Beta testers reported 73% reduction in travel anxiety and 100% would recommend to friends</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Features Section ===== -->
+    <section class="section" style="background-color: var(--gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Industry-Leading Features</h2>
+                <p>Powered by proprietary SafeRoute™ technology</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Real-Time Deviation Alerts</h3>
+                    <p>Instant notifications when your route changes unexpectedly, with danger-level assessment</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Predictive Safety Scoring</h3>
+                    <p>AI analyzes routes for risk factors like poor lighting, high crime areas, and traffic patterns</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Smart Destination Alarms</h3>
+                    <p>Location-aware reminders that account for actual travel speed, not just estimated time</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Emergency Cascade</h3>
+                    <p>Automated contact escalation with live location sharing if you don't respond to alerts</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Travel Companion Mode</h3>
+                    <p>Virtual trip monitoring that gives loved ones peace of mind without constant check-ins</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Global Coverage</h3>
+                    <p>Works anywhere with GPS signal - no regional restrictions or service limitations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA Section ===== -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Travel With Confidence?</h2>
+            <p>Join thousands of smart travelers who never worry about safety</p>
+            <a href="signup.html" class="cta-btn">Start Your Protected Journey</a>
+        </div>
+    </section>
+</body>
+</html>

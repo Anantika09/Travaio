@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="test">Test Backend</button>
+  <script>
+    document.getElementById('test').onclick = async () => {
+      console.log("Button clicked, testing backend...");
+      try {
+        const res = await fetch('http://localhost:5000/auth/health');
+        console.log("Fetch response object:", res);
+        const text = await res.text();
+        console.log("Backend says:", text);
+      } catch (err) {
+        console.error("Fetch error:", err);
+      }
+    };
+  </script>
+</body>
+</html>

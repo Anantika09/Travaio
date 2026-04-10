@@ -6,166 +6,363 @@
     <title>About Travaio | AI-Powered Travel Safety Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ===== Modern Teal Theme ===== */
+        /* ===== Modern Teal Theme (Enhanced) ===== */
         :root {
             --teal-primary: #008080;
             --teal-dark: #006666;
+            --teal-darker: #004d4d;
             --teal-light: #E6F2F2;
+            --teal-soft: #f0f7f7;
             --white: #FFFFFF;
-            --black: #222222;
-            --gray: #F8F9FA;
+            --black: #1a1a1a;
+            --gray-light: #F8F9FA;
+            --gray-mid: #e9ecef;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 25px 35px -12px rgba(0, 128, 128, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--black);
-            line-height: 1.7;
-            margin: 0;
-            padding: 0;
+            line-height: 1.6;
             background-color: var(--white);
+            overflow-x: hidden;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        /* ===== Hero Section ===== */
+        /* ===== Typography ===== */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* ===== Hero Section (Enhanced) ===== */
         .hero-about {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%), 
                         url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
             color: var(--white);
-            padding: 120px 0;
+            padding: 8rem 0;
             text-align: center;
+            position: relative;
         }
 
         .hero-about h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 1.25rem;
+            animation: fadeInUp 0.8s ease;
         }
 
         .hero-about p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.25rem);
             max-width: 700px;
             margin: 0 auto;
+            opacity: 0.95;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease 0.1s backwards;
         }
 
-        /* ===== Content Sections ===== */
-        .section {
-            padding: 80px 0;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        /* ===== Section Titles ===== */
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 3.5rem;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
             color: var(--teal-primary);
-            font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--teal-primary);
+            border-radius: 2px;
         }
 
         .section-title p {
-            color: var(--black);
+            color: #555;
             font-size: 1.1rem;
             max-width: 700px;
-            margin: 0 auto;
+            margin: 1.5rem auto 0;
         }
 
         /* ===== Mission Section ===== */
         .mission {
-            background-color: var(--teal-light);
+            background-color: var(--teal-soft);
         }
 
         .mission-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 2rem;
         }
 
         .mission-card {
             background-color: var(--white);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid rgba(0, 128, 128, 0.1);
         }
 
         .mission-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 128, 128, 0.2);
         }
 
         .mission-card h3 {
             color: var(--teal-primary);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
-        /* ===== Features Section ===== */
+        .mission-card p {
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* ===== Feature Cards (Unified Style) ===== */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
+            background: var(--white);
+            padding: 1.8rem;
+            border-radius: 16px;
             border-left: 4px solid var(--teal-primary);
-            padding-left: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--teal-primary), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateX(6px);
+            box-shadow: var(--shadow-md);
+            border-left-width: 6px;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-card h3 {
             font-size: 1.3rem;
             color: var(--teal-dark);
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
         }
 
-        /* ===== CTA Section ===== */
+        .feature-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ===== Gray Section Background ===== */
+        .bg-gray {
+            background-color: var(--gray-light);
+        }
+
+        /* ===== CTA Section (Enhanced) ===== */
         .cta {
-            background-color: var(--teal-primary);
+            background: linear-gradient(135deg, var(--teal-primary) 0%, var(--teal-dark) 100%);
             color: var(--white);
             text-align: center;
-            padding: 60px 0;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .cta h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
         }
 
         .cta-btn {
             display: inline-block;
             background-color: var(--white);
             color: var(--teal-primary);
-            padding: 12px 30px;
+            padding: 0.9rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            margin-top: 20px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
         }
 
         .cta-btn:hover {
             background-color: var(--teal-dark);
             color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--white);
         }
 
-        /* ===== Responsive ===== */
+        .cta-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ===== Responsive Refinements ===== */
         @media (max-width: 768px) {
-            .hero-about h1 {
-                font-size: 2.2rem;
+            .hero-about {
+                padding: 4rem 0;
             }
             
-            .section-title h2 {
-                font-size: 2rem;
+            .section-title {
+                margin-bottom: 2rem;
             }
+            
+            .mission-card, .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .features-grid {
+                gap: 1.25rem;
+            }
+            
+            .cta {
+                padding: 3rem 0;
+            }
+            
+            .cta-btn {
+                padding: 0.75rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 92%;
+                padding: 0 0.5rem;
+            }
+            
+            .mission-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== Smooth Scroll ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== Focus States for Accessibility ===== */
+        .cta-btn:focus-visible {
+            outline: 3px solid var(--white);
+            outline-offset: 3px;
+            border-radius: 50px;
+        }
+
+        .feature-card:focus-within {
+            outline: 2px solid var(--teal-primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -233,7 +430,7 @@
     </section>
 
     <!-- ===== Features Section ===== -->
-    <section class="section" style="background-color: var(--gray);">
+    <section class="section bg-gray">
         <div class="container">
             <div class="section-title">
                 <h2>Industry-Leading Features</h2>
@@ -279,7 +476,7 @@
         <div class="container">
             <h2>Ready to Travel With Confidence?</h2>
             <p>Join thousands of smart travelers who never worry about safety</p>
-            <a href="signup.html" class="cta-btn">Start Your Protected Journey</a>
+            <a href="signup.html" class="cta-btn">Start Your Protected Journey →</a>
         </div>
     </section>
 </body>

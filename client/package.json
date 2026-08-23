@@ -1,0 +1,9 @@
+{
+  "name":"travaio-client",
+  "private":true,
+  "version":"2.0.0",
+  "type":"module",
+  "scripts":{"dev":"vite --open","build":"vite build","preview":"vite preview"},
+  "dependencies":{"@vitejs/plugin-react":"latest","axios":"latest","leaflet":"latest","lucide-react":"latest","react":"latest","react-dom":"latest","react-leaflet":"latest","react-router-dom":"latest"},
+  "devDependencies":{"vite":"latest"}
+}

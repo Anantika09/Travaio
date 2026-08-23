@@ -1,0 +1,20 @@
+const express=require('express');
+const cors=require('cors');
+const mongoose=require('mongoose');
+const dotenv=require('dotenv');
+const tripRoutes=require('./routes/trip');
+const authRoutes=require('./routes/auth');
+const contactRoutes=require('./routes/contact');
+const emergencyRoutes=require('./routes/emergency');
+dotenv.config();
+const app=express();
+const PORT=process.env.PORT||5000;
+app.use(cors({origin:process.env.CLIENT_URL||'http://localhost:5173'}));
+app.use(express.json({limit:'1mb'}));
+app.get('/health',(req,res)=>res.json({status:'ok',service:'travaio-api'}));
+app.use('/auth',authRoutes);app.use('/trip',tripRoutes);app.use('/api/contact',contactRoutes);app.use('/emergency',emergencyRoutes);
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+ console.log('MongoDB connected');
+ app.listen(PORT,()=>console.log(`Server running on port ${PORT}`));
+ setInterval(()=>tripRoutes.processSafety().catch(err=>console.error('Safety worker error:',err.message)),5000);
+}).catch(err=>{console.error('MongoDB connection error:',err);process.exit(1);});

@@ -30,35 +30,30 @@ const minRouteDistance=(p,route)=>{let min=Infinity;for(let i=1;i<route.length;i
 async function geocode(place) {
   const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q=${encodeURIComponent(place)}`;
 
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'Travaio/2.0 travel-safety-app'
-      },
-      signal: AbortSignal.timeout(12000)
-    });
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'Travaio/2.0 (travel-safety-app)'
+    },
+    signal: AbortSignal.timeout(12000)
+  });
 
-    console.log('Nominatim:', place, response.status);
+  console.log('Nominatim:', place, response.status);
 
-    if (!response.ok) {
-      throw new Error(`Nominatim returned HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!data.length) {
-      throw new Error(`Could not find "${place}"`);
-    }
-
-    return {
-      name: data[0].display_name,
-      lat: Number(data[0].lat),
-      lng: Number(data[0].lon)
-    };
-  } catch (error) {
-    console.error('Geocoding failed:', place, error.message);
-    throw new Error('Location search is temporarily unavailable.');
+  if (!response.ok) {
+    throw new Error(`Nominatim returned HTTP ${response.status}`);
   }
+
+  const data = await response.json();
+
+  if (!data.length) {
+    throw new Error(`Could not find "${place}"`);
+  }
+
+  return {
+    name: data[0].display_name,
+    lat: Number(data[0].lat),
+    lng: Number(data[0].lon)
+  };
 }
 
 async function routeBetween(a,b){
@@ -75,7 +70,9 @@ router.post('/route-preview', auth, async (req,res)=>{
   try{
     const {origin,destination}=req.body;
     if(!origin||!destination) return res.status(400).json({msg:'Starting point and destination are required.'});
-    const [a,b]=await Promise.all([geocode(origin),geocode(destination)]);
+    const a = await geocode(origin);
+await new Promise(resolve => setTimeout(resolve, 1200));
+const b = await geocode(destination);
     const route=await routeBetween(a,b);
     res.json({origin:a,destination:b,...route});
   }catch(err){res.status(502).json({msg:err.message});}

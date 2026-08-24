@@ -27,13 +27,38 @@ const pointSegmentDistance=(p,a,b)=>{
 };
 const minRouteDistance=(p,route)=>{let min=Infinity;for(let i=1;i<route.length;i++)min=Math.min(min,pointSegmentDistance(p,route[i-1],route[i]));return min;};
 
-async function geocode(place){
-  const url=`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q=${encodeURIComponent(place)}`;
-  const response=await fetch(url,{headers:{'User-Agent':'Travaio/2.0 travel-safety-app'},signal:AbortSignal.timeout(12000)});
-  if(!response.ok) throw new Error('Location search is temporarily unavailable.');
-  const data=await response.json();
-  if(!data.length) throw new Error(`Could not find “${place}”. Try adding the city or state.`);
-  return {lat:Number(data[0].lat),lng:Number(data[0].lon),label:data[0].display_name};
+async function geocode(place) {
+  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q=${encodeURIComponent(place)}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Travaio/2.0 travel-safety-app'
+      },
+      signal: AbortSignal.timeout(12000)
+    });
+
+    console.log('Nominatim:', place, response.status);
+
+    if (!response.ok) {
+      throw new Error(`Nominatim returned HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.length) {
+      throw new Error(`Could not find "${place}"`);
+    }
+
+    return {
+      name: data[0].display_name,
+      lat: Number(data[0].lat),
+      lng: Number(data[0].lon)
+    };
+  } catch (error) {
+    console.error('Geocoding failed:', place, error.message);
+    throw new Error('Location search is temporarily unavailable.');
+  }
 }
 
 async function routeBetween(a,b){
